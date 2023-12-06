@@ -39,4 +39,13 @@ func _integrate_forces(physics_state):
 
 
 func explode():
+	layers = 0
+	$Sprite.hide()
+	$Expoision/AnimationPlayer.play("explosion")
+	emit_signal("exploded", size, radius, position, linear_velocity)
+	linear_velocity = Vector2()
+	angular_velocity = 0
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
 	queue_free()
